@@ -3,13 +3,25 @@
 Home-Page
 @endsection
 @section('mainContent')
+<h3 class="text-center text-muted my-3">Line Chart</h3>
+<p id="demo"></p>
 <hr>
-	<a class="mx-3" href="datas/create">Add New Entry</a>
-	<a href="/LARAVEL-CRUD/public/getjson">Push Json Data To SQL Server</a><a class="mx-3" href="/LARAVEL-CRUD/public/clearjson">Clear SQL Server Data</a>
-<hr>
+<div class="form-group">
+  <select class="form-control dynamic" data-dependent="Trade_Code">
+		<option value=""> Select Trade Code</option>
+		@foreach($dataArray as $data)
+		<option value="{{$data->trade_code}}">{{$data->trade_code}}</option>
+		@endforeach
+  </select>
+</div>
+	 <div id="chart" style="height: 300px;"></div>
 
-<h3 class="text-center text-muted my-3">Data Table</h3>
- <table class="main-table">
+<h3 class="text-center text-muted mt-5 mb-3">Data Table</h3>
+<hr>
+<a class="mx-3" href="datas/create">Add New Entry</a>
+<a href="/LARAVEL-CRUD/public/clearSQLserverData">Clear All Entries</a>
+
+ <table class="main-table mb-5">
 	<tr>
 		<th>Date</th>
 		<th>Trade-Code</th>
@@ -41,5 +53,17 @@ Home-Page
 		</tr>
     @endforeach
  </table>
-
 @endsection
+@push('js')
+<script>
+ const chart = new Chartisan({
+	 el: '#chart',
+	 url: "@chart('line_chart')",
+	 hooks: new ChartisanHooks()
+    .beginAtZero()
+    .colors()
+    .borderColors()
+		.datasets([{ type: 'line', fill: false }]),
+ });
+</script>
+@endpush('js')

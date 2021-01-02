@@ -15,21 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\DataController@index');
 
-Route::get('/getjson', function(){
-	$json = file_get_contents(storage_path('data.json'));
- 	$objs = json_decode($json,true);
-	foreach ($objs as $obj)  {
-		foreach ($obj as $key => $value) {
-			$insertArr[$key] = $value;
-		}
-		DB::table('datas')->insert($insertArr);
-	}
-	return redirect('/');
-});
-
-Route::get('/clearjson', function(){
+Route::get('/clearSQLserverData', function(){
 	DB::table('datas')->delete();
 	return redirect('/');
 });
+
 
 Route::resource('/datas', 'App\Http\Controllers\DataController');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Data;
 use Illuminate\Http\Request;
+use App\Charts\LineChart;
 
 class DataController extends Controller
 {
@@ -14,10 +15,12 @@ class DataController extends Controller
      */
     public function index()
     {
+      return view('index')->with('dataArray',Data::all());
+    }
 
-      return view('index')
-      ->with('dataArray',Data::all());
-      //->with('jumman',$jumman);
+    public function trade()
+    {
+      return view('index')->with('dataArray',Data::all());
     }
 
     /**
