@@ -11,7 +11,7 @@ Create a new entry
 </div>
 <hr>
 	<h1 class="text-muted my-3">Create New Entry</h1>
-	<form class="form-horizontal" method="post" action="/LARAVEL-CRUD/public/datas">
+	<form class="form-horizontal" method="post" action="/datas">
 		@csrf
 			<fieldset>
 			<!-- Text input-->

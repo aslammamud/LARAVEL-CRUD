@@ -18,8 +18,8 @@ Home-Page
 
 <h3 class="text-center text-muted mt-5 mb-3">Data Table</h3>
 <hr>
-<a class="mx-3" href="datas/create">Add New Entry</a>
-<a href="/LARAVEL-CRUD/public/clearSQLserverData">Clear All Entries</a>
+<a href="/datas/create">Add New Entry</a><a class="mx-3" href="/getjson">Push Json Data To SQL Server</a>
+<a href="/clearSQLserverData">Clear All Entries</a>
 
  <table class="main-table mb-5">
 	<tr>
@@ -35,15 +35,15 @@ Home-Page
 	</tr>
   @foreach($dataArray as $data)
 		<tr>
-			<td><a href="datas/{{$data->id}}">{{$data->date}}</a></td>
+			<td><a href="/datas/{{$data->id}}">{{$data->date}}</a></td>
 			<td>{{$data->trade_code}}</td>
 			<td>{{$data->high}}</td>
 			<td>{{$data->low}}</td>
 			<td>{{$data->open}}</td>
 			<td>{{$data->close}}</td>
 			<td>{{$data->volume}}</td>
-			<td><a class="btn btn-warning" href="/LARAVEL-CRUD/public/datas/{{$data->id}}/edit">Edit</a></td>
-      <td><form class="form-horizontal" method="post" action="/LARAVEL-CRUD/public/datas/{{$data->id}}">
+			<td><a class="btn btn-warning" href="/datas/{{$data->id}}/edit">Edit</a></td>
+      <td><form class="form-horizontal" method="post" action="/datas/{{$data->id}}">
   			@csrf
   			@method('delete')
   			<!-- Button -->

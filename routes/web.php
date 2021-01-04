@@ -21,4 +21,16 @@ Route::get('/clearSQLserverData', function(){
 });
 
 
+Route::get('/getjson', function(){
+	$json = file_get_contents(storage_path('data.json'));
+ 	$objs = json_decode($json,true);
+	foreach ($objs as $obj)  {
+		foreach ($obj as $key => $value) {
+			$insertArr[$key] = $value;
+		}
+		DB::table('datas')->insert($insertArr);
+	}
+	return redirect('/datas');
+});
+
 Route::resource('/datas', 'App\Http\Controllers\DataController');

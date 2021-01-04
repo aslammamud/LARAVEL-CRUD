@@ -5,7 +5,7 @@ Entry Details
 @section('mainContent')
 <hr>
 <div>
-	<a href="/LARAVEL-CRUD/public/datas">Back</a>
+	<a href="/">Back</a>
 </div>
 <hr>
 		<table style="font-size:18px; width:60%" class="ml-5 my-5 main-table">
@@ -45,8 +45,8 @@ Entry Details
 		 </tr>
 
 		 <tr>
-			<td><a class="btn btn-warning " href="/LARAVEL-CRUD/public/datas/{{$data->id}}/edit">Edit</a></td>
-			<td><form method="post" action="/LARAVEL-CRUD/public/datas/{{$data->id}}">
+			<td><a class="btn btn-warning " href="/datas/{{$data->id}}/edit">Edit</a></td>
+			<td><form method="post" action="/datas/{{$data->id}}">
 			 @csrf
 			 @method('delete')
 				 <label for="submit"></label>

@@ -7,11 +7,11 @@ Update  Data
 @section('mainContent')
 <hr>
 <div>
-	<a href="/LARAVEL-CRUD/public/datas">Back</a>
+	<a href="/">Back</a>
 </div>
 <hr>
 	<h2 class="my-4">Update Data</h2>
-	<form class="form-horizontal" method="post" action="/LARAVEL-CRUD/public/datas/{{$data->id}}">
+	<form class="form-horizontal" method="post" action="/datas/{{$data->id}}">
 		@csrf
 		@method('put')
 			<fieldset>
