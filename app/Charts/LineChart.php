@@ -14,15 +14,16 @@ class LineChart extends BaseChart
     public function handler(Request $request): Chartisan
     {
 
-      $dataArr = Data::where('id','=','31933')->where('trade_code','=','1JANATAMF')->get();
+      //$dataArr = Data::where('id','=','31933')->where('trade_code','=','1JANATAMF')->get();
+      $dataArr = Data::all();
 
       foreach($dataArr as $data){
         $date = $data->date;
         $trade_code = $data->trade_code;
-        $high = $data->high;
-        $low = $data->low;
-        $open = $data->open;
-        $close = $data->close;
+        $high = str_replace(',','',$data->high);
+        $low = str_replace(',','',$data->low);
+        $open = str_replace(',','',$data->open);
+        $close = str_replace(',','',$data->close);
         $volume = str_replace(',','',$data->volume);
         $totals = [$high,$low,$open,$close,$volume];
         $labels = ['High','Low','Open','Close','Volume'];
