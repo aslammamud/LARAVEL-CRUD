@@ -13,20 +13,22 @@ class LineChart extends BaseChart
 {
     public function handler(Request $request): Chartisan
     {
-      $trade = "Sample";
-      $dataArr = Data::all();
+
+      $dataArr = Data::where('id','=','31933')->where('trade_code','=','1JANATAMF')->get();
+
       foreach($dataArr as $data){
+        $date = $data->date;
         $trade_code = $data->trade_code;
         $high = $data->high;
         $low = $data->low;
         $open = $data->open;
         $close = $data->close;
-        $volume = $data->volume;
-
+        $volume = str_replace(',','',$data->volume);
         $totals = [$high,$low,$open,$close,$volume];
+        $labels = ['High','Low','Open','Close','Volume'];
       }
       $MyChart =  Chartisan::build()
-            ->labels(['High','Low','Open','Close','Volume'])
+            ->labels($labels)
             ->dataset($trade_code, $totals);
       return $MyChart;
     }

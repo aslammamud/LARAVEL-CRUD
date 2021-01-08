@@ -11,12 +11,10 @@ class DataController extends Controller
 
     public function index()
     {
-      return view('index')->with('dataArray',Data::all());
-    }
-
-    public function trade()
-    {
-      return view('index')->with('dataArray',Data::all());
+      $trade_lists = Data::select('trade_code')->groupBy('trade_code')->get()->pluck('trade_code')->toArray();
+      return view('index')
+      ->with('dataArray', Data::all())
+      ->with('trade_lists',$trade_lists);
     }
 
     public function create()

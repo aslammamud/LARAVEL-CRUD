@@ -4,17 +4,23 @@ Home-Page
 @endsection
 @section('mainContent')
 <h3 class="text-center text-muted my-3">Line Chart</h3>
-<p id="demo"></p>
 <hr>
+
 <div class="form-group">
-  <select class="form-control dynamic" data-dependent="Trade_Code">
+  <select class="form-control" data-dependent="Trade_Code">
 		<option value=""> Select Trade Code</option>
-		@foreach($dataArray as $data)
-		<option value="{{$data->trade_code}}">{{$data->trade_code}}</option>
+		@foreach($trade_lists as $data)
+		<option value="{{$data}}">{{$data}}</option>
 		@endforeach
   </select>
 </div>
-	 <div id="chart" style="height: 300px;"></div>
+
+
+<!--
+{!! Form::select('area_id',$trade_lists,null,['class'=>'form-control']) !!}
+-->
+
+<div id="chart" style="height: 300px;"></div>
 
 <h3 class="text-center text-muted mt-5 mb-3">Data Table</h3>
 <hr>
@@ -56,14 +62,25 @@ Home-Page
 @endsection
 @push('js')
 <script>
- const chart = new Chartisan({
-	 el: '#chart',
-	 url: "@chart('line_chart')",
-	 hooks: new ChartisanHooks()
-    .beginAtZero()
-    .colors()
-    .borderColors()
-		.datasets([{ type: 'line', fill: false }]),
- });
+
+chart = new Chartisan({
+	el: '#chart',
+	url: "@chart('line_chart')"+"?id={{}}",
+	hooks: new ChartisanHooks()
+	 .beginAtZero()
+	 .colors()
+	 .borderColors()
+	 .datasets([{ type: 'line', fill: false }]),
+});
+
+
+ //function makeChart(label, data) {
+    //chart.data.labels;
+  //  chart.data.datasets.forEach((dataset) => {
+    //    dataset.data;
+    //});
+  //  chart.update();
+//}
+
 </script>
 @endpush('js')
